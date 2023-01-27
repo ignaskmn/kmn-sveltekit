@@ -1,0 +1,56 @@
+@import '@fontsource/inter/variable-full.css';
+
+:root {
+	--font-body: "Inter", sans-serif;
+	--color-bg-0: rgb(255, 255, 255);
+
+	font-family: var(--font-body);
+	color: var(--color-text);
+}
+
+body {
+	background-color: var(--color-bg-0);
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+h1 {
+	font-size: 2rem;
+	text-align: center;
+}
+
+h2 {
+	font-size: 1rem;
+}
+
+input,
+button {
+	font-size: inherit;
+	font-family: inherit;
+}
+
+button:focus:not(:focus-visible) {
+	outline: none;
+}
+
+@media (min-width: 720px) {
+
+}
+
+.visually-hidden {
+	border: 0;
+	clip: rect(0 0 0 0);
+	height: auto;
+	margin: 0;
+	overflow: hidden;
+	padding: 0;
+	position: absolute;
+	width: 1px;
+	white-space: nowrap;
+}
