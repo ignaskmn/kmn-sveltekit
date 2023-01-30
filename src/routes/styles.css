@@ -1,8 +1,10 @@
 @import '@fontsource/inter/variable-full.css';
 
 :root {
-	--font-body: "Inter", sans-serif;
+	--font-body: "InterVariable", "Inter", sans-serif;
 	--color-bg-0: rgb(255, 255, 255);
+	--color-text: rgb(0, 0, 0);
+	--theme-primary: #0F1538;
 
 	font-family: var(--font-body);
 	color: var(--color-text);
@@ -14,10 +16,7 @@ body {
 
 a {
 	text-decoration: none;
-}
-
-a:hover {
-	text-decoration: underline;
+	color: var(--color-text);
 }
 
 h1 {
@@ -39,6 +38,10 @@ button:focus:not(:focus-visible) {
 	outline: none;
 }
 
+li {
+	list-style: none;
+}
+
 @media (min-width: 720px) {
 
 }
@@ -54,3 +57,4 @@ button:focus:not(:focus-visible) {
 	width: 1px;
 	white-space: nowrap;
 }
+

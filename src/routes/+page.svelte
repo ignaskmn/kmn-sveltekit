@@ -9,7 +9,7 @@
 </svelte:head>
 
 <section>
-	{#each data.exampleDocs as example}
+	{#each data.docs as example}
 		<h1>{example.thisIsAField}</h1>
 		<div>{example.id}</div>
 	{/each}

@@ -1,5 +1,3 @@
-/** @type {import('../$types').PageLoad} */
-
 type List = {
 	docs: Example[];
 	totalDocs: number;
@@ -16,16 +14,46 @@ type List = {
 type Example = {
 	id: string;
 	thisIsAField: string;
-	createdAt: string;
-	updatedAt: string;
+	// createdAt: string;
+	// updatedAt: string;
 };
 
-export async function load(): Promise<{ exampleDocs: Example[] }> {
-	const examples: List = await fetch('https://tvs.kmn.lt/api/examples').then((r) => r.json());
+import type { PageServerLoad } from './$types';
 
-	const exampleDocs = examples.docs;
-
-	return {
-		exampleDocs
-	};
+const query = `
+query ExampleQuery {
+  Examples {
+    docs {
+      id
+      thisIsAField
+    }
+  }
 }
+`;
+
+export const load: PageServerLoad = async () => {
+	try {
+		const response = await fetch('https://tvs.kmn.lt/api/graphql', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify({
+				query
+			})
+		});
+
+		// const { data: responseData }: { data: Example[] } = await response.json();
+
+		const exampleData = await response.json();
+		// console.log('exampleData', exampleData);
+		// const { data: exampleData }: { data: List } = await response.json();
+		const exampleDocs = exampleData.data.Examples;
+
+		// console.log('exampleDocs', exampleDocs);
+
+		return { ...exampleDocs };
+	} catch (error) {
+		console.error(`Error in load function for /: ${error}`);
+	}
+};
