@@ -25,17 +25,28 @@
 		content: '';
 		top: 1.3rem;
 		right: 0.1rem;
+		/* left: 90%; */
 		width: 0;
 		height: 0;
 		display: inline-block;
-		border-top: 6px solid var(--color-text);
-		border-bottom: 6px solid transparent;
-		border-left: 6px solid transparent;
-		border-right: 6px solid transparent;
+		border-top: 0.3rem solid var(--color-text);
+		border-bottom: 0.3rem solid transparent;
+		border-left: 0.3rem solid transparent;
+		border-right: 0.3rem solid transparent;
 	}
 
 	a {
 		padding: 0.75rem 1rem;
 		display: inline-block;
+	}
+
+	@media (max-width: 960px) {
+		button::after {
+			top: 1.2rem;
+			border-top: 0.3rem solid transparent;
+			border-bottom: 0.3rem solid transparent;
+			border-left: 0.3rem solid var(--color-text);
+			border-right: 0.3rem solid transparent;
+		}
 	}
 </style>

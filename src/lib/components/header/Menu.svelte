@@ -15,6 +15,13 @@
 		open = open === id ? '' : id;
 	}
 
+	function closeSubmenu(event: any) {
+		const target = event.target as HTMLElement;
+		if (target.closest('.menu-item')) return;
+		open = '';
+		hover = false;
+	}
+
 	function handleKeyDown(event: any) {
 		const target = event.target.parentElement as HTMLElement;
 		const id = target.id;
@@ -42,28 +49,9 @@
 			}
 		}, 200);
 	}
-
-	function clickOutside(node: HTMLElement) {
-		// the node has been mounted in the DOM
-
-		function outsideClick(event: any) {
-			if (node && !node.contains(event.target) && !event.defaultPrevented) {
-				node.dispatchEvent(new CustomEvent('outsideclick'));
-			}
-		}
-
-		document.addEventListener('click', outsideClick, true);
-
-		return {
-			destroy() {
-				// the node has been removed from the DOM
-				document.removeEventListener('click', handleClick, true);
-			}
-		};
-	}
 </script>
 
-<svelte:window bind:innerWidth />
+<svelte:window bind:innerWidth on:click={closeSubmenu} />
 
 <nav>
 	<ul>
@@ -76,9 +64,7 @@
 				<li
 					class="menu-item"
 					id={item.id}
-					use:clickOutside
 					on:click={handleClick}
-					on:outsideclick={() => (open = '')}
 					on:keydown={handleKeyDown}
 					on:mouseenter={handleMouseEnter}
 					on:mouseleave={handleMouseLeave}
@@ -95,13 +81,13 @@
 
 <style>
 	nav {
-		display: flex;
-		flex-direction: row;
-		align-items: flex-end;
+		background-color: white;
 	}
+
 	nav ul {
 		display: flex;
 		flex-direction: row;
+		width: fit-content;
 		margin: 0;
 		padding: 0;
 	}
@@ -112,5 +98,15 @@
 		font-weight: 500;
 		text-transform: uppercase;
 		display: inline-block;
+	}
+
+	@media (max-width: 960px) {
+		nav {
+			width: 200px;
+		}
+
+		nav ul {
+			flex-direction: column;
+		}
 	}
 </style>
