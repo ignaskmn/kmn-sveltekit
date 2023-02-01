@@ -25,6 +25,7 @@
 		flex-direction: column;
 		margin: 0;
 		padding: 0;
+		background-color: var(--color-bg-0);
 	}
 
 	.visible {

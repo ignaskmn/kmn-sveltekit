@@ -3,43 +3,39 @@
 	export let slug: string = '';
 </script>
 
-<li>
-	<button>
-		{#if slug !== ''}
-			<a href={`/${slug}`}>{label}</a>
-		{:else}
-			<span>{label}</span>
-		{/if}
-	</button>
-</li>
+{#if slug !== ''}
+	<a href={`/${slug}`}>{label}</a>
+{:else}
+	<button>{label}</button>
+{/if}
 
 <style>
-	li {
-		font-size: 1.2rem;
-		font-weight: 500;
-		text-transform: uppercase;
-		display: inline-block;
-	}
-
 	button {
+		padding: 0.75rem 1rem;
 		background: none;
 		color: inherit;
 		border: none;
 		font: inherit;
 		cursor: pointer;
-		outline: inherit;
 		text-transform: inherit;
-		text-align: left;
-		padding: 0;
+	}
+
+	button::after {
+		position: absolute;
+		content: '';
+		top: 1.3rem;
+		right: 0.1rem;
+		width: 0;
+		height: 0;
+		display: inline-block;
+		border-top: 6px solid var(--color-text);
+		border-bottom: 6px solid transparent;
+		border-left: 6px solid transparent;
+		border-right: 6px solid transparent;
 	}
 
 	a {
-		display: inline-block;
 		padding: 0.75rem 1rem;
-	}
-
-	span {
 		display: inline-block;
-		padding: 0.75rem 1rem;
 	}
 </style>
