@@ -1,10 +1,12 @@
 <script lang="ts">
 	import { menuItems } from '$lib/data/menuItems.js';
+	import Burger from './Burger.svelte';
 	import MenuDropdown from './MenuDropdown.svelte';
 	import MenuItem from './MenuItem.svelte';
 
 	let open: string = '';
 	let hover: boolean = false;
+	let showMobile: boolean = false;
 	let innerWidth: number;
 
 	$: condition = innerWidth > 960;
@@ -49,11 +51,16 @@
 			}
 		}, 200);
 	}
+
+	function toggleMobile() {
+		showMobile = !showMobile;
+	}
 </script>
 
 <svelte:window bind:innerWidth on:click={closeSubmenu} />
 
 <nav>
+	<Burger isOpen={showMobile} on:click={toggleMobile} />
 	<ul>
 		{#each menuItems as item}
 			{#if !item.submenu}
