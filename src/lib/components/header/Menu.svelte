@@ -3,42 +3,44 @@
 	import MenuDropdown from './MenuDropdown.svelte';
 	import MenuItem from './MenuItem.svelte';
 
-	export let open: string = '';
+	let open: string = '';
+	let hover: boolean = false;
 	let innerWidth: number;
 
 	$: condition = innerWidth > 960;
 
 	function handleClick(event: any) {
-		const target = event.target as HTMLElement;
-		const label = target.innerText;
-		open = open.toLowerCase() === label.toLowerCase() ? '' : label.toLowerCase();
+		const target = event.target.parentElement as HTMLElement;
+		const id = target.id;
+		open = open === id ? '' : id;
 	}
 
 	function handleKeyDown(event: any) {
-		const target = event.target as HTMLElement;
-		const label = target.innerText;
+		const target = event.target.parentElement as HTMLElement;
+		const id = target.id;
 		if (event.key === 'Space' || event.key === 'ArrowDown') {
-			open = open.toLowerCase() === label.toLowerCase() ? '' : label.toLowerCase();
+			open = open === id ? '' : id;
 		}
 	}
 
 	function handleMouseEnter(event: any) {
 		if (!condition) return;
-		const target = event.target.firstChild as HTMLElement;
-		const label = target.innerText;
-		open = label.toLowerCase();
-		console.log(open);
+		hover = true;
+		const target = event.target as HTMLElement;
+		const id = target.id;
+		open = id;
 	}
 
 	function handleMouseLeave(event: any) {
 		if (!condition) return;
-		const target = event.target.firstChild as HTMLElement;
-		const label = target.innerText;
+		hover = false;
+		const target = event.target as HTMLElement;
+		const id = target.id;
 		setTimeout(() => {
-			if (open.toLowerCase() === label.toLowerCase()) {
+			if (open === id && hover === false) {
 				open = '';
 			}
-		}, 500);
+		}, 200);
 	}
 
 	function clickOutside(node: HTMLElement) {
@@ -65,25 +67,26 @@
 
 <nav>
 	<ul>
-		{#each menuItems as item, i (i)}
+		{#each menuItems as item}
 			{#if !item.submenu}
-				<li class="menu-item">
+				<li class="menu-item" id={item.id}>
 					<MenuItem label={item.label} slug={item.slug} />
 				</li>
 			{:else}
 				<li
-					use:clickOutside
 					class="menu-item"
+					id={item.id}
+					use:clickOutside
 					on:click={handleClick}
 					on:outsideclick={() => (open = '')}
 					on:keydown={handleKeyDown}
 					on:mouseenter={handleMouseEnter}
 					on:mouseleave={handleMouseLeave}
 					aria-haspopup="menu"
-					aria-expanded={open === item.label.toLowerCase()}
+					aria-expanded={open === item.id}
 				>
 					<MenuItem label={item.label} />
-					<MenuDropdown menuItems={item.submenuItems} isOpen={open === item.label.toLowerCase()} />
+					<MenuDropdown menuItems={item.submenuItems} isOpen={open === item.id} />
 				</li>
 			{/if}
 		{/each}
