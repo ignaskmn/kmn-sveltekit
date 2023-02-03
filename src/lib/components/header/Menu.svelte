@@ -61,7 +61,7 @@
 
 <nav>
 	<Burger isOpen={showMobile} on:click={toggleMobile} />
-	<ul>
+	<ul class={showMobile ? 'visible' : ''}>
 		{#each menuItems as item}
 			{#if !item.submenu}
 				<li class="menu-item" id={item.id}>
@@ -89,6 +89,8 @@
 <style>
 	nav {
 		background-color: white;
+		display: flex;
+		flex-direction: column;
 	}
 
 	nav ul {
@@ -101,19 +103,30 @@
 
 	.menu-item {
 		position: relative;
-		font-size: 1.2rem;
-		font-weight: 500;
-		text-transform: uppercase;
 		display: inline-block;
 	}
 
 	@media (max-width: 960px) {
 		nav {
+			position: fixed;
+			right: 0;
 			width: 200px;
 		}
 
 		nav ul {
 			flex-direction: column;
+			min-height: 100vh;
+			transform: translateX(135%);
+
+			transition: transform 0.3s ease-in-out;
+		}
+
+		.visible {
+			transform: translateX(0);
+		}
+
+		.menu-item {
+			position: relative;
 		}
 	}
 </style>

@@ -35,4 +35,22 @@
 	.hidden {
 		display: none;
 	}
+
+	@media (max-width: 960px) {
+		ul {
+			position: relative;
+			width: 200px;
+			transform: translateX(135%);
+
+			transition: transform 0.3s ease-in-out;
+		}
+
+		.hidden {
+			/* display: flex; */
+		}
+
+		.visible {
+			transform: translateX(0);
+		}
+	}
 </style>

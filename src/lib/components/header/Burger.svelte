@@ -10,8 +10,9 @@
 
 <style>
 	.burger {
-		/* display: none; */
-		display: flex;
+		display: none;
+
+		align-self: flex-end;
 
 		background-color: var(--color-bg-0);
 		border: none;
@@ -23,10 +24,9 @@
 	}
 
 	.burger div {
-		/* display: none; */
-		display: block;
+		display: none;
 		width: 2rem;
-		height: 0.2rem;
+		height: 0.15rem;
 		background-color: var(--color-text);
 		border-radius: 10px;
 		transform-origin: 0.1rem;
@@ -52,5 +52,15 @@
 	}
 	.open div:nth-child(3) {
 		transform: rotate(-45deg) translate(3px, 3px);
+	}
+
+	@media (max-width: 960px) {
+		.burger {
+			display: flex;
+		}
+
+		.burger div {
+			display: block;
+		}
 	}
 </style>

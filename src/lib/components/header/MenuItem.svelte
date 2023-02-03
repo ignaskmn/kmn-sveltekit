@@ -17,7 +17,9 @@
 		border: none;
 		font: inherit;
 		cursor: pointer;
-		text-transform: inherit;
+		text-transform: uppercase;
+		font-size: 1.2rem;
+		font-weight: 500;
 	}
 
 	button::after {
@@ -25,7 +27,6 @@
 		content: '';
 		top: 1.3rem;
 		right: 0.1rem;
-		/* left: 90%; */
 		width: 0;
 		height: 0;
 		display: inline-block;
@@ -38,6 +39,9 @@
 	a {
 		padding: 0.75rem 1rem;
 		display: inline-block;
+		text-transform: uppercase;
+		font-size: 1.2rem;
+		font-weight: 500;
 	}
 
 	@media (max-width: 960px) {
