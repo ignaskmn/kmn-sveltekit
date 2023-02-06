@@ -45,10 +45,6 @@
 			transition: transform 0.3s ease-in-out;
 		}
 
-		.hidden {
-			/* display: flex; */
-		}
-
 		.visible {
 			transform: translateX(0);
 		}

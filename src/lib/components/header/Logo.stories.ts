@@ -4,14 +4,14 @@ import Logo from './Logo.svelte';
 const meta = {
 	title: 'Header/Logo',
 	component: Logo,
-	// argTypes: {
-	// 	size: {
-	// 		control: { type: 'select' },
-	// 		options: ['small', 'normal', 'large']
-	// 	}
-	// },
+	argTypes: {
+		color: {
+			control: { type: 'color' }
+		}
+	},
 	args: {
-        href: "/"
+		color: '#3B3B3B',
+		href: ''
 	}
 } satisfies Meta<Logo>;
 
@@ -19,5 +19,4 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {
-};
+export const Default: Story = {};
