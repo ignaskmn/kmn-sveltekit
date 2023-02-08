@@ -1,22 +1,11 @@
 <script lang="ts">
 	import { slide } from 'svelte/transition';
+	import { menuItems } from '$lib/data/menuItems.js';
 
 	let isOpen = false;
 	let isSubmenuOpen = false;
 	let submenu = '';
 	let menuHeight: number;
-
-	const id = '1';
-
-	const menuItems = [
-		{ id: '1', slug: 'about', label: 'About' },
-		{ id: '2', slug: 'contact', label: 'Contact' },
-		{ id: '3', slug: 'blog', label: 'Blog' },
-		{ id: '4', slug: 'news', label: 'News' },
-		{ id: '5', slug: 'lorem', label: 'Lorem' },
-		{ id: '6', slug: 'ipsum', label: 'Ipsum' },
-		{ id: '7', slug: 'ibsen', label: 'Ibsen' }
-	];
 
 	function toggleMenu() {
 		isOpen = !isOpen;
@@ -36,7 +25,7 @@
 
 <div class="screen">
 	{#if isOpen}
-		<div class="nav-container" transition:slide>
+		<div class="nav-container" in:slide out:slide>
 			<nav style="height: {menuHeight.toString()}rem" class="menu">
 				<ul class={`${isSubmenuOpen ? 'slide' : ''}`}>
 					{#each menuItems as item}
@@ -61,10 +50,9 @@
 			</nav>
 		</div>
 	{/if}
-	<p transition:slide>Content</p>
+	<p>Content</p>
 </div>
 
-<!-- style="top: {(parseInt(item.id) * 1.5).toString()}rem" -->
 <style>
 	.screen {
 		width: 100%;
@@ -76,7 +64,6 @@
 		display: flex;
 		flex-direction: row;
 		flex-wrap: nowrap;
-		background-color: aqua;
 		overflow: hidden;
 	}
 
@@ -121,14 +108,6 @@
 		margin: 0;
 		padding: 0;
 		width: 100%;
-	}
-
-	.visible {
-		display: block;
-	}
-
-	.invisible {
-		display: none;
 	}
 
 	.submenu-btn {
