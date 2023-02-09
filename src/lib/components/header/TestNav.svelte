@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { slide } from 'svelte/transition';
 	import MenuItem from './MenuItem.svelte';
 	import { menuItems } from '$lib/data/menuItems.js';
 
@@ -11,6 +10,8 @@
 
 	// height of every menu item
 	let itemHeight: number = 2.7;
+
+	let innerWidth: number;
 
 	function toggleMenu() {
 		isOpen = !isOpen;
@@ -37,11 +38,14 @@
 	$: condition = innerWidth > 960;
 	$: menuHeight = isSubmenuOpen ? submenuHeight * itemHeight : menuItems.length * itemHeight;
 
+
 </script>
+
+<svelte:window bind:innerWidth />
 
 <div class="screen">
 <button class="burger" on:click={toggleMenu}>Burger</button>
-	<nav style="height: {isOpen ? menuHeight.toString() : '0'}rem" class='menu'>
+	<nav style="height: {condition ? '2' : isOpen ? menuHeight.toString() : '0'}rem" class='menu'>
 		<ul class={`${isSubmenuOpen ? 'slide' : ''}`}>
 			{#each menuItems as item}
 				{#if !item.submenu}
