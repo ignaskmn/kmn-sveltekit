@@ -1,6 +1,7 @@
 <script lang="ts">
 	import MenuItem from './MenuItem.svelte';
 	import { menuItems } from '$lib/data/menuItems.js';
+	import Burger from './Burger.svelte';
 
 	let isOpen = false;
 	let isSubmenuOpen = false;
@@ -37,15 +38,25 @@
 
 	$: condition = innerWidth > 960;
 	$: menuHeight = isSubmenuOpen ? submenuHeight * itemHeight : menuItems.length * itemHeight;
-
-
 </script>
 
 <svelte:window bind:innerWidth />
 
 <div class="screen">
-<button class="burger" on:click={toggleMenu}>Burger</button>
-	<nav style="height: {condition ? '2' : isOpen ? menuHeight.toString() : '0'}rem" class='menu'>
+	{#if !condition}
+		<Burger bind:isOpen on:click={toggleMenu} />
+	{/if}
+	<!-- Nav element logic: if screen smaller than 960px,
+	the height of nav is menuHeight in rem if burger open, 0rem if closed.
+	If screen is bigger than 960px height is auto  -->
+	<nav
+		style="height: {!condition
+			? isOpen
+				? [menuHeight.toString(), 'rem'].join('')
+				: '0rem'
+			: 'auto'}"
+		class="menu"
+	>
 		<ul class={`${isSubmenuOpen ? 'slide' : ''}`}>
 			{#each menuItems as item}
 				{#if !item.submenu}
@@ -83,6 +94,20 @@
 		overflow: hidden;
 	}
 
+	.menu {
+		max-height: 2.7rem;
+	}
+
+	.menu ul {
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		align-items: center;
+		list-style: none;
+		margin: 0;
+		padding: 0;
+	}
+
 	@media (max-width: 960px) {
 		.burger {
 			display: block;
@@ -90,17 +115,12 @@
 
 		.menu {
 			width: 100%;
+			max-height: 100%;
 			transition: height 0.3s ease-in-out;
 		}
 
 		.menu ul {
-			display: flex;
 			flex-direction: column;
-			justify-content: center;
-			align-items: center;
-			list-style: none;
-			margin: 0;
-			padding: 0;
 			transition: transform 0.3s ease-in-out;
 		}
 
