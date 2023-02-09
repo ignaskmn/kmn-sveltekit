@@ -20,7 +20,7 @@
 		isSubmenuOpen = !isSubmenuOpen;
 		const parent = e.target.parentNode;
 		const id = parent.id;
-		const submenuItems = menuItems.find((item) => item.id === id)?.submenuItems.length;
+		const submenuItems = menuItems.find((item: any) => item.id === id)?.submenuItems.length;
 		if (submenuItems) {
 			submenuHeight = submenuItems + 1;
 		}
@@ -36,62 +36,42 @@
 
 	$: condition = innerWidth > 960;
 	$: menuHeight = isSubmenuOpen ? submenuHeight * itemHeight : menuItems.length * itemHeight;
+
 </script>
 
-<button class="burger" on:click={toggleMenu}>Burger</button>
-
 <div class="screen">
-	{#if isOpen}
-		<div class="nav-container" in:slide out:slide>
-			<nav style="height: {menuHeight.toString()}rem" class="menu">
-				<ul class={`${isSubmenuOpen ? 'slide' : ''}`}>
-					{#each menuItems as item}
-						{#if !item.submenu}
-							<li class="menu-item" id={item.id}>
-								<MenuItem label={item.label} slug={item.slug} />
-							</li>
-						{:else}
-							<li class="menu-item" id={item.id}>
-								<MenuItem label={item.label} onClick={toggleSubmenu} />
-								{#if item.id === submenu}
-									<ul class="submenu">
-										{#each item.submenuItems as subitem}
-											<li>
-												<MenuItem label={subitem.label} slug={subitem.slug} h={itemHeight} />
-											</li>
-										{/each}
-										{#if !condition}
-											<li>
-												<MenuItem label="<- Atgal" h={itemHeight} onClick={closeMobileSubmenu} />
-											</li>
-										{/if}
-									</ul>
+<button class="burger" on:click={toggleMenu}>Burger</button>
+	<nav style="height: {isOpen ? menuHeight.toString() : '0'}rem" class='menu'>
+		<ul class={`${isSubmenuOpen ? 'slide' : ''}`}>
+			{#each menuItems as item}
+				{#if !item.submenu}
+					<li class="menu-item" id={item.id}>
+						<MenuItem label={item.label} slug={item.slug} />
+					</li>
+				{:else}
+					<li class="menu-item" id={item.id}>
+						<MenuItem label={item.label} onClick={toggleSubmenu} />
+						{#if item.id === submenu}
+							<ul class="submenu">
+								{#each item.submenuItems as subitem}
+									<li>
+										<MenuItem label={subitem.label} slug={subitem.slug} h={itemHeight} />
+									</li>
+								{/each}
+								{#if !condition}
+									<li>
+										<MenuItem label="<- Atgal" h={itemHeight} onClick={closeMobileSubmenu} />
+									</li>
 								{/if}
-							</li>
-							<!-- <li class="menu-item" id={item.id}>
-							<button class="menu-btn" on:click={toggleSubmenu}>{item.label}</button>
-							{#if item.id === submenu}
-								<ul class="submenu">
-									<li>
-										<button class="submenu-btn"> Submenu item </button>
-									</li>
-									<li>
-										<button class="submenu-btn"> Submenu item </button>
-									</li>
-									<li>
-										<button class="submenu-btn" on:click={toggleSubmenu}> Back </button>
-									</li>
-								</ul>
-							{/if}
-						</li> -->
+							</ul>
 						{/if}
-					{/each}
-				</ul>
-			</nav>
-		</div>
-	{/if}
-	<p>Content</p>
+					</li>
+				{/if}
+			{/each}
+		</ul>
+	</nav>
 </div>
+<p>Content</p>
 
 <style>
 	.screen {
@@ -100,10 +80,6 @@
 	}
 
 	@media (max-width: 960px) {
-		.nav-container {
-			width: 100%;
-		}
-
 		.burger {
 			display: block;
 		}
