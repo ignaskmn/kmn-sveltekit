@@ -1,17 +1,24 @@
 <script lang="ts">
 	export let label: string = '';
 	export let slug: string = '';
+	export let h: number = 2.7;
+	export let onClick = (e: any) => {};
 </script>
 
 {#if slug !== ''}
-	<a href={`/${slug}`}>{label}</a>
+	<a href={`/${slug}`} style={`height: ${h}rem; line-height: ${h}rem`}>
+		{label}
+	</a>
 {:else}
-	<button>{label}</button>
+	<button on:click={onClick} style={`height: ${h}rem; line-height: ${h}rem`}>
+		{label}
+	</button>
 {/if}
 
 <style>
 	button {
-		padding: 0.75rem 1rem;
+		padding: 0 1rem;
+
 		background: none;
 		color: inherit;
 		border: none;
@@ -22,22 +29,8 @@
 		font-weight: 500;
 	}
 
-	button::after {
-		position: absolute;
-		content: '';
-		top: 1.3rem;
-		right: 0.1rem;
-		width: 0;
-		height: 0;
-		display: inline-block;
-		border-top: 0.3rem solid var(--color-text);
-		border-bottom: 0.3rem solid transparent;
-		border-left: 0.3rem solid transparent;
-		border-right: 0.3rem solid transparent;
-	}
-
 	a {
-		padding: 0.75rem 1rem;
+		padding: 0 1rem;
 		display: inline-block;
 		text-transform: uppercase;
 		font-size: 1.2rem;
@@ -45,12 +38,16 @@
 	}
 
 	@media (max-width: 960px) {
-		button::after {
-			top: 1.2rem;
-			border-top: 0.3rem solid transparent;
-			border-bottom: 0.3rem solid transparent;
-			border-left: 0.3rem solid var(--color-text);
-			border-right: 0.3rem solid transparent;
+		button {
+			width: 100%;
+			text-align: center;
+			padding: 0;
+		}
+
+		a {
+			width: 100%;
+			text-align: center;
+			padding: 0;
 		}
 	}
 </style>

@@ -1,19 +1,16 @@
 <script lang="ts">
 	import MenuItem from './MenuItem.svelte';
 
-	export let menuItems = [
-		{ slug: 'about', label: 'About' },
-		{ slug: 'contact', label: 'Contact' },
-		{ slug: 'blog', label: 'Blog' }
-	];
-
-	export let isOpen: boolean = true;
+	export let menuItems = [{ slug: 'about', label: 'About' }];
+	export let isOpen: boolean = false;
+	export let toggleSubmenu = (e: any) => {};
 </script>
 
 <ul class={isOpen ? 'visible' : 'hidden'}>
 	{#each menuItems as item}
 		<MenuItem label={item.label} slug={item.slug} />
 	{/each}
+	<MenuItem label="Back" on:click={toggleSubmenu} />
 </ul>
 
 <style>
@@ -38,15 +35,12 @@
 
 	@media (max-width: 960px) {
 		ul {
-			position: relative;
-			width: 200px;
-			transform: translateX(135%);
-
-			transition: transform 0.3s ease-in-out;
+			top: 0;
+			left: 100%;
+			width: 100%;
 		}
 
 		.visible {
-			transform: translateX(0);
 		}
 	}
 </style>

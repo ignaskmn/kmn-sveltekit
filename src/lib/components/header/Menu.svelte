@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { menuItems } from '$lib/data/menuItems.js';
 	import Burger from './Burger.svelte';
-	import MenuDropdown from './MenuDropdown.svelte';
+	import Submenu from './Submenu.svelte';
 	import MenuItem from './MenuItem.svelte';
 
 	let open: string = '';
@@ -79,7 +79,7 @@
 					aria-expanded={open === item.id}
 				>
 					<MenuItem label={item.label} />
-					<MenuDropdown menuItems={item.submenuItems} isOpen={open === item.id} />
+					<Submenu menuItems={item.submenuItems} isOpen={open === item.id} />
 				</li>
 			{/if}
 		{/each}

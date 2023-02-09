@@ -1,13 +1,13 @@
 import type { Meta, StoryObj } from '@storybook/svelte';
-import MenuDropdown from './MenuDropdown.svelte';
+import Submenu from './Submenu.svelte';
 
 const meta = {
-	title: 'Header/MenuDropdown',
-	component: MenuDropdown,
+	title: 'Header/Submenu',
+	component: Submenu,
 	args: {
 		isOpen: true
 	}
-} satisfies Meta<MenuDropdown>;
+} satisfies Meta<Submenu>;
 
 export default meta;
 
