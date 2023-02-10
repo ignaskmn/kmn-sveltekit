@@ -18,7 +18,6 @@
 <style>
 	button {
 		padding: 0 1rem;
-
 		background: none;
 		color: inherit;
 		border: none;

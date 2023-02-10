@@ -64,8 +64,8 @@ export const menuItems = [
 				id: '63d8dc5fd15c2794a53d2f5a'
 			},
 			{
-				label: 'Administracinė Informacija',
-				slug: 'info',
+				label: 'Informacija',
+				slug: 'informacija',
 				id: '63d8dc65d15c2794a53d2f5b'
 			}
 		],
@@ -94,7 +94,7 @@ export const menuItems = [
 				id: '63d8dc99d15c2794a53d2f5f'
 			},
 			{
-				label: 'Rėmėjai / Partneriai',
+				label: 'Partneriai',
 				slug: 'partneriai',
 				id: '63d8dca5d15c2794a53d2f60'
 			}

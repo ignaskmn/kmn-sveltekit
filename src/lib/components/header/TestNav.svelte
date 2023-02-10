@@ -5,6 +5,7 @@
 
 	let isOpen = false;
 	let isSubmenuOpen = false;
+	let hover = false;
 	let submenu = '';
 	let menuHeight: number;
 	let submenuHeight: number;
@@ -36,11 +37,43 @@
 		}, 250);
 	}
 
+	function handleMouseEnter(event: any) {
+		if (!condition) return;
+		hover = true;
+		const target = event.target as HTMLElement;
+		const id = target.id;
+		submenu = id;
+	}
+
+	function handleMouseLeave(event: any) {
+		if (!condition) return;
+		hover = false;
+		const target = event.target as HTMLElement;
+		const id = target.id;
+		setTimeout(() => {
+			if (submenu === id && hover === false) {
+				submenu = '';
+			}
+		}, 200);
+	}
+
+	function outsideClose(event: any) {
+		const target = event.target as HTMLElement;
+		if (target.closest('.menu-item') || target.closest('.burger')) return;
+		if (!condition) {
+			isOpen = false;
+		} else {
+			submenu = '';
+			isSubmenuOpen = false;
+			hover = false;
+		}
+	}
+
 	$: condition = innerWidth > 960;
 	$: menuHeight = isSubmenuOpen ? submenuHeight * itemHeight : menuItems.length * itemHeight;
 </script>
 
-<svelte:window bind:innerWidth />
+<svelte:window bind:innerWidth on:click={outsideClose} />
 
 <div class="screen">
 	{#if !condition}
@@ -50,11 +83,7 @@
 	the height of nav is menuHeight in rem if burger open, 0rem if closed.
 	If screen is bigger than 960px height is auto  -->
 	<nav
-		style="height: {!condition
-			? isOpen
-				? [menuHeight.toString(), 'rem'].join('')
-				: '0rem'
-			: 'auto'}"
+		style="height: {!condition ? (isOpen ? [menuHeight.toString(), 'rem'].join('') : '0rem') : ''}"
 		class="menu"
 	>
 		<ul class={`${isSubmenuOpen ? 'slide' : ''}`}>
@@ -64,7 +93,12 @@
 						<MenuItem label={item.label} slug={item.slug} />
 					</li>
 				{:else}
-					<li class="menu-item" id={item.id}>
+					<li
+						class="menu-item"
+						id={item.id}
+						on:mouseenter={handleMouseEnter}
+						on:mouseleave={handleMouseLeave}
+					>
 						<MenuItem label={item.label} onClick={toggleSubmenu} />
 						{#if item.id === submenu}
 							<ul class="submenu">
@@ -91,26 +125,34 @@
 <style>
 	.screen {
 		width: 100%;
-		overflow: hidden;
-	}
-
-	.menu {
-		max-height: 2.7rem;
 	}
 
 	.menu ul {
 		display: flex;
 		flex-direction: row;
-		justify-content: center;
-		align-items: center;
 		list-style: none;
 		margin: 0;
 		padding: 0;
 	}
 
+	.menu-item {
+		position: relative;
+	}
+
+	.submenu {
+		position: absolute;
+		display: flex;
+		top: 100%;
+		flex-direction: column;
+		flex-wrap: wrap;
+		margin: 0;
+		padding: 0;
+	}
+
 	@media (max-width: 960px) {
-		.burger {
-			display: block;
+		.screen {
+			width: 100%;
+			overflow: hidden;
 		}
 
 		.menu {
@@ -125,31 +167,15 @@
 		}
 
 		.menu-item {
+			position: static;
 			width: 100%;
-			display: flex;
 			flex-direction: row;
 		}
 
-		.menu-btn {
-			width: 100%;
-			height: 1.5rem;
-		}
-
 		.submenu {
-			position: absolute;
-			display: flex;
-			flex-direction: column;
 			left: 100%;
 			top: 0;
-			list-style: none;
-			margin: 0;
-			padding: 0;
 			width: 100%;
-		}
-
-		.submenu-btn {
-			width: 100%;
-			height: 1.5rem;
 		}
 
 		.slide {

@@ -39,8 +39,5 @@
 			left: 100%;
 			width: 100%;
 		}
-
-		.visible {
-		}
 	}
 </style>
