@@ -11,7 +11,8 @@ const meta = {
 	},
 	args: {
 		color: '#3B3B3B',
-		href: ''
+		href: '',
+		height: 50
 	}
 } satisfies Meta<Logo>;
 

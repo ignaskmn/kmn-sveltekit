@@ -1,13 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/svelte';
-import Submenu from './Submenu.svelte';
+import Header from './Header.svelte';
 
 const meta = {
-	title: 'Header/Submenu',
-	component: Submenu,
-	args: {
-		isOpen: true
-	}
-} satisfies Meta<Submenu>;
+	title: 'Header/Header',
+	component: Header,
+	args: {}
+} satisfies Meta<Header>;
 
 export default meta;
 
