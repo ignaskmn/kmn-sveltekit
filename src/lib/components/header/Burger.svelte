@@ -10,7 +10,9 @@
 
 <style>
 	.burger {
-		display: none;
+		flex-grow: 1;
+		flex-basis: 0;
+		display: flex;
 		background-color: var(--color-bg-0);
 		border: none;
 		cursor: pointer;
@@ -21,7 +23,7 @@
 	}
 
 	.burger div {
-		display: none;
+		display: block;
 		width: 2rem;
 		height: 0.15rem;
 		background-color: var(--color-text);
@@ -49,15 +51,5 @@
 	}
 	.open div:nth-child(3) {
 		transform: rotate(-45deg) translate(3px, 3px);
-	}
-
-	@media (max-width: 960px) {
-		.burger {
-			display: flex;
-		}
-
-		.burger div {
-			display: block;
-		}
 	}
 </style>

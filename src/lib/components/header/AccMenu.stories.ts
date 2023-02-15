@@ -1,11 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/svelte';
-import Menu from './Menu.svelte';
+import AccMenu from './AccMenu.svelte';
 
 const meta = {
-	title: 'Header/Menu',
-	component: Menu,
+	title: 'Header/AccMenu',
+	component: AccMenu,
 	args: {}
-} satisfies Meta<Menu>;
+} satisfies Meta<AccMenu>;
 
 export default meta;
 

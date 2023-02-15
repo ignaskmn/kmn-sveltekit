@@ -6,11 +6,11 @@
 	$: width = height * 2.85;
 </script>
 
-<a {href}>
-	<div class="kmn-logo" style="fill: {color}">
+<div class="kmn-logo" style="fill: {color}">
+	<a {href}>
 		<svg
-			width={`${width.toString()}rem`}
-			height={`${height.toString()}rem`}
+			width={`${width}rem`}
+			height={`${height}rem`}
 			viewBox="0 0 255.72444 90.035164"
 			version="1.1"
 			id="svg259"
@@ -34,19 +34,25 @@
 				</g>
 			</g>
 		</svg>
-	</div>
-</a>
+	</a>
+</div>
 
 <style>
 	.kmn-logo {
 		display: inline-block;
 		margin: auto;
 		fill: var(--theme-primary);
-		height: 100%;
-		/* padding: 1rem 0; */
+		flex-grow: 1;
+		flex-basis: 0;
 	}
 
 	.kmn-logo svg {
 		height: 100%;
+	}
+
+	@media (max-width: 960px) {
+		.kmn-logo {
+			flex-grow: 0;
+		}
 	}
 </style>

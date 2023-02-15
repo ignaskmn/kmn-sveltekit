@@ -84,6 +84,7 @@
 	.menu {
 		width: 100%;
 		transition: height 0.3s ease-in-out;
+		overflow: hidden;
 	}
 
 	.menu ul {
@@ -114,9 +115,5 @@
 
 	.slide {
 		transform: translateX(-100%);
-	}
-
-	.content {
-		background-color: green;
 	}
 </style>

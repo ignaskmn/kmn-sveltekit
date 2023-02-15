@@ -2,6 +2,7 @@
 	import MobileMenu from '../lib/components/header/MobileMenu.svelte';
 	import DesktopMenu from '../lib/components/header/DesktopMenu.svelte';
 	import Logo from '../lib/components/header/Logo.svelte';
+	import AccMenu from '../lib/components/header/AccMenu.svelte';
 	import Burger from '../lib/components/header/Burger.svelte';
 
 	let innerWidth: number;
@@ -20,7 +21,7 @@
 	{#if desktop}
 		<DesktopMenu />
 	{/if}
-	<span>Acc</span>
+	<AccMenu height={2.5} />
 </header>
 {#if !desktop}
 	<MobileMenu bind:isOpen />
@@ -34,5 +35,9 @@
 		justify-content: space-between;
 		width: 100%;
 		height: 4rem;
+	}
+
+	p {
+		display: inline-block;
 	}
 </style>
