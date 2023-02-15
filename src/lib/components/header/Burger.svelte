@@ -11,9 +11,6 @@
 <style>
 	.burger {
 		display: none;
-
-		align-self: flex-end;
-
 		background-color: var(--color-bg-0);
 		border: none;
 		cursor: pointer;

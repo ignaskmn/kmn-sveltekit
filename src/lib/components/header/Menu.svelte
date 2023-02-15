@@ -82,45 +82,47 @@
 	<!-- Nav element logic: if screen smaller than 960px,
 	the height of nav is menuHeight in rem if burger open, 0rem if closed.
 	If screen is bigger than 960px height is auto  -->
-	<nav
-		style="height: {!condition ? (isOpen ? [menuHeight.toString(), 'rem'].join('') : '0rem') : ''}"
-		class="menu"
-	>
-		<ul class={`${isSubmenuOpen ? 'slide' : ''}`}>
-			{#each menuItems as item}
-				{#if !item.submenu}
-					<li class="menu-item" id={item.id}>
-						<Item label={item.label} slug={item.slug} />
-					</li>
-				{:else}
-					<li
-						class="menu-item"
-						id={item.id}
-						on:mouseenter={handleMouseEnter}
-						on:mouseleave={handleMouseLeave}
-						aria-haspopup="menu"
-						aria-expanded={open === item.id}
-					>
-						<Item label={item.label} onClick={toggleSubmenu} />
-						{#if item.id === submenu}
-							<ul class="submenu">
-								{#each item.submenuItems as subitem}
-									<li>
-										<Item label={subitem.label} slug={subitem.slug} h={itemHeight} />
-									</li>
-								{/each}
-								{#if !condition}
-									<li>
-										<Item label="<- Atgal" h={itemHeight} onClick={closeMobileSubmenu} />
-									</li>
-								{/if}
-							</ul>
-						{/if}
-					</li>
-				{/if}
-			{/each}
-		</ul>
-	</nav>
+	{#if (!condition && isOpen) || condition}
+		<nav
+			style="height: {!condition ? (isOpen ? [menuHeight.toString(), 'rem'].join('') : '0rem') : ''}"
+			class="menu"
+		>
+			<ul class={`${isSubmenuOpen ? 'slide' : ''}`}>
+				{#each menuItems as item}
+					{#if !item.submenu}
+						<li class="menu-item" id={item.id}>
+							<Item label={item.label} slug={item.slug} />
+						</li>
+					{:else}
+						<li
+							class="menu-item"
+							id={item.id}
+							on:mouseenter={handleMouseEnter}
+							on:mouseleave={handleMouseLeave}
+							aria-haspopup="menu"
+							aria-expanded={open === item.id}
+						>
+							<Item label={item.label} onClick={toggleSubmenu} />
+							{#if item.id === submenu}
+								<ul class="submenu">
+									{#each item.submenuItems as subitem}
+										<li>
+											<Item label={subitem.label} slug={subitem.slug} h={itemHeight} />
+										</li>
+									{/each}
+									{#if !condition}
+										<li>
+											<Item label="<- Atgal" h={itemHeight} onClick={closeMobileSubmenu} />
+										</li>
+									{/if}
+								</ul>
+							{/if}
+						</li>
+					{/if}
+				{/each}
+			</ul>
+		</nav>
+	{/if}
 </div>
 <div class = "content">Content</div>
 <style>
