@@ -2,15 +2,16 @@
 	export let label: string = '';
 	export let slug: string = '';
 	export let h: number = 2.7;
+	export let size: number = 1.1;
 	export let onClick = (e: any) => {};
 </script>
 
 {#if slug !== ''}
-	<a href={`/${slug}`} style={`height: ${h}rem; line-height: ${h}rem`}>
+	<a href={`/${slug}`} style={`height: ${h}rem; line-height: ${h}rem; font-size: ${size}rem`}>
 		{label}
 	</a>
 {:else}
-	<button on:click={onClick} style={`height: ${h}rem; line-height: ${h}rem`}>
+	<button on:click={onClick} style={`height: ${h}rem; line-height: ${h}rem; font-size: ${size}rem`}>
 		{label}
 	</button>
 {/if}

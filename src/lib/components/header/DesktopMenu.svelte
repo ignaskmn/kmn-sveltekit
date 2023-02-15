@@ -43,7 +43,6 @@
 		isSubmenuOpen = false;
 		hover = false;
 	}
-
 </script>
 
 <svelte:window on:click={outsideClose} />
@@ -62,14 +61,11 @@
 					on:mouseenter={handleMouseEnter}
 					on:mouseleave={handleMouseLeave}
 					aria-haspopup="menu"
-					aria-expanded={open === item.id}
+					aria-expanded={submenu === item.id}
 				>
 					<Item label={item.label} onClick={toggleSubmenu} />
 					{#if item.id === submenu}
-						<ul class="submenu"
-							in:slide={{duration: 300}}
-							out:slide={{duration: 200}}
-						>
+						<ul class="submenu" in:slide={{ duration: 200 }} out:slide={{ duration: 100 }}>
 							{#each item.submenuItems as subitem}
 								<li>
 									<Item label={subitem.label} slug={subitem.slug} h={itemHeight} />
@@ -82,6 +78,7 @@
 		{/each}
 	</ul>
 </nav>
+
 <style>
 	.menu ul {
 		display: flex;

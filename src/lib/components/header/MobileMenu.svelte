@@ -2,7 +2,6 @@
 	import { slide } from 'svelte/transition';
 	import Item from './Item.svelte';
 	import { menuItems } from '$lib/data/menuItems.js';
-	import Burger from './Burger.svelte';
 
 	// height of every menu item
 	export let itemHeight: number = 2.7;
@@ -47,12 +46,7 @@
 <svelte:window on:click={outsideClose} />
 
 {#if isOpen}
-	<nav
-		class="menu"
-		style={`height: ${menuHeight}rem`}
-		in:slide
-		out:slide
-	>
+	<nav class="menu" style={`height: ${menuHeight}rem`} in:slide out:slide>
 		<ul class={`${isSubmenuOpen ? 'slide' : ''}`}>
 			{#each menuItems as item}
 				{#if !item.submenu}
@@ -64,7 +58,7 @@
 						class="menu-item"
 						id={item.id}
 						aria-haspopup="menu"
-						aria-expanded={open === item.id}
+						aria-expanded={submenu === item.id}
 					>
 						<Item label={item.label} onClick={toggleSubmenu} />
 						{#if item.id === submenu}
@@ -74,9 +68,9 @@
 										<Item label={subitem.label} slug={subitem.slug} h={itemHeight} />
 									</li>
 								{/each}
-									<li>
-										<Item label="<- Atgal" h={itemHeight} onClick={closeMobileSubmenu} />
-									</li>
+								<li>
+									<Item label="<- Atgal" h={itemHeight} onClick={closeMobileSubmenu} />
+								</li>
 							</ul>
 						{/if}
 					</li>
@@ -85,6 +79,7 @@
 		</ul>
 	</nav>
 {/if}
+
 <style>
 	.menu {
 		width: 100%;
@@ -124,5 +119,4 @@
 	.content {
 		background-color: green;
 	}
-
 </style>

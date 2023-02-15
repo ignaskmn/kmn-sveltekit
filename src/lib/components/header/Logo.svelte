@@ -1,7 +1,7 @@
 <script lang="ts">
 	export let href: string = '/';
 	export let color: string = '#000';
-	export let height: number = 50;
+	export let height: number = 1;
 
 	$: width = height * 2.85;
 </script>
@@ -9,8 +9,8 @@
 <a {href}>
 	<div class="kmn-logo" style="fill: {color}">
 		<svg
-			width={`${width.toString()}px`}
-			height={`${height.toString()}px`}
+			width={`${width.toString()}rem`}
+			height={`${height.toString()}rem`}
 			viewBox="0 0 255.72444 90.035164"
 			version="1.1"
 			id="svg259"

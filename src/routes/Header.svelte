@@ -1,31 +1,29 @@
 <script lang="ts">
-	import MobileMenu from "../lib/components/header/MobileMenu.svelte";
-	import DesktopMenu from "../lib/components/header/DesktopMenu.svelte";
-	import Logo from "../lib/components/header/Logo.svelte";
-	import Burger from "../lib/components/header/Burger.svelte";
+	import MobileMenu from '../lib/components/header/MobileMenu.svelte';
+	import DesktopMenu from '../lib/components/header/DesktopMenu.svelte';
+	import Logo from '../lib/components/header/Logo.svelte';
+	import Burger from '../lib/components/header/Burger.svelte';
 
 	let innerWidth: number;
 	let isOpen: boolean;
 
 	$: desktop = innerWidth > 960;
-
-
 </script>
 
-<svelte:window bind:innerWidth/>
+<svelte:window bind:innerWidth />
 
 <header>
 	{#if !desktop}
-		<Burger bind:isOpen on:click={() => isOpen = !isOpen}/>
+		<Burger bind:isOpen on:click={() => (isOpen = !isOpen)} />
 	{/if}
-	<Logo />
+	<Logo height={2.7} />
 	{#if desktop}
 		<DesktopMenu />
 	{/if}
 	<span>Acc</span>
 </header>
 {#if !desktop}
-	<MobileMenu bind:isOpen/>
+	<MobileMenu bind:isOpen />
 {/if}
 <p>Content</p>
 
@@ -35,6 +33,6 @@
 		align-items: center;
 		justify-content: space-between;
 		width: 100%;
+		height: 4rem;
 	}
-
 </style>
