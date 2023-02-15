@@ -8,7 +8,7 @@
 	let innerWidth: number;
 	let isOpen: boolean;
 
-	$: desktop = innerWidth > 960;
+	$: desktop = innerWidth > 1200;
 </script>
 
 <svelte:window bind:innerWidth />

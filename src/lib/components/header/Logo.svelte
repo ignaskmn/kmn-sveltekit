@@ -50,7 +50,7 @@
 		height: 100%;
 	}
 
-	@media (max-width: 960px) {
+	@media (max-width: 1200px) {
 		.kmn-logo {
 			flex-grow: 0;
 		}

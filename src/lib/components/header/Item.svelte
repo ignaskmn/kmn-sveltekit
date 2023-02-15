@@ -2,7 +2,7 @@
 	export let label: string = '';
 	export let slug: string = '';
 	export let h: number = 2.7;
-	export let size: number = 1.1;
+	export let size: number = 1.2;
 	export let onClick = (e: any) => {};
 </script>
 
@@ -18,7 +18,7 @@
 
 <style>
 	button {
-		padding: 0 1rem;
+		padding: 0 0.75rem;
 		background: none;
 		color: inherit;
 		border: none;
@@ -27,17 +27,18 @@
 		text-transform: uppercase;
 		font-size: 1.2rem;
 		font-weight: 500;
+		white-space: nowrap;
 	}
 
 	a {
-		padding: 0 1rem;
+		padding: 0 0.75rem;
 		display: inline-block;
 		text-transform: uppercase;
 		font-size: 1.2rem;
 		font-weight: 500;
 	}
 
-	@media (max-width: 960px) {
+	@media (max-width: 1200px) {
 		button {
 			width: 100%;
 			text-align: center;
