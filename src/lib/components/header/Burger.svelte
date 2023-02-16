@@ -2,16 +2,21 @@
 	export let isOpen = false;
 </script>
 
-<button class={`burger ${isOpen ? 'open' : ''}`} on:click>
-	<div />
-	<div />
-	<div />
-</button>
+<div class="burger-container">
+	<button class={`burger ${isOpen ? 'open' : ''}`} on:click>
+		<div />
+		<div />
+		<div />
+	</button>
+</div>
 
 <style>
-	.burger {
+	.burger-container {
 		flex-grow: 1;
 		flex-basis: 0;
+	}
+
+	.burger {
 		display: flex;
 		background-color: var(--color-bg-0);
 		border: none;
@@ -20,6 +25,7 @@
 		height: 2rem;
 		justify-content: space-around;
 		flex-flow: column nowrap;
+		/* width: fit-content; */
 	}
 
 	.burger div {

@@ -2,10 +2,10 @@
 	export let height = 2.7;
 </script>
 
-<div class="sight">
+<button>
 	<svg
-		width={`${height.toString()}rem`}
-		height={`${height.toString()}rem`}
+		width={`${height}rem`}
+		height={`${height}rem`}
 		viewBox="0 0 41 41"
 		fill="none"
 		xmlns="http://www.w3.org/2000/svg"
@@ -24,10 +24,12 @@
 			fill="#0F1538"
 		/>
 	</svg>
-</div>
+</button>
 
 <style>
-	.sight {
-		cursor: pointer;
+	button {
+		background: none;
+		border: none;
+		padding: 0;
 	}
 </style>

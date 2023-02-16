@@ -4,13 +4,11 @@
 	import Sight from './Sight.svelte';
 
 	export let height: number = 2.7;
-
-	let langHeight = height * 0.915;
 </script>
 
 <ul>
 	<li>
-		<Lang height={langHeight} />
+		<Lang {height} />
 	</li>
 	<li>
 		<Hearing {height} />

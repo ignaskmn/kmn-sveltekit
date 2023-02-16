@@ -65,7 +65,7 @@
 				>
 					<Item label={item.label} onClick={toggleSubmenu} />
 					{#if item.id === submenu}
-						<ul class="submenu" in:slide={{ duration: 200 }} out:slide={{ duration: 100 }}>
+						<ul class="submenu" in:slide={{ duration: 100 }} out:slide={{ duration: 300 }}>
 							{#each item.submenuItems as subitem}
 								<li>
 									<Item label={subitem.label} slug={subitem.slug} h={itemHeight} />
