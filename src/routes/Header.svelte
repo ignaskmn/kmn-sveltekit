@@ -1,9 +1,9 @@
 <script lang="ts">
-	import MobileMenu from '../lib/components/header/MobileMenu.svelte';
-	import DesktopMenu from '../lib/components/header/DesktopMenu.svelte';
-	import Logo from '../lib/components/header/Logo.svelte';
-	import AccMenu from '../lib/components/header/AccMenu.svelte';
-	import Burger from '../lib/components/header/Burger.svelte';
+	import MobileMenu from '$lib/components/header/MobileMenu.svelte';
+	import DesktopMenu from '$lib/components/header/DesktopMenu.svelte';
+	import Logo from '$lib/components/header/Logo.svelte';
+	import AccMenu from '$lib/components/header/AccMenu.svelte';
+	import Burger from '$lib/components/header/Burger.svelte';
 
 	let innerWidth: number;
 	let isOpen: boolean;
