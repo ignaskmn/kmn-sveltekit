@@ -1,5 +1,7 @@
 <script lang="ts">
-	export let label: string = '';
+	import type { LocalisedString } from '$lib/types';
+
+	export let label: LocalisedString;
 	export let slug: string = '';
 	export let h: number = 2.7;
 	export let size: number = 1.2;

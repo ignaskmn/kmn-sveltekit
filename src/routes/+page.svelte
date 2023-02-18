@@ -1,6 +1,38 @@
-<script>
+<script lang="ts">
 	/** @type {import('./$types').PageData} */
-	export let data;
+	import { locale } from '$lib/locales/translations';
+	import { slide } from 'svelte/transition';
+
+	export let data: Examples;
+	const examples: Example[] = data.result.docs;
+
+	type Examples = {
+		result: {
+			docs: Example[];
+			totalDocs: number;
+			limit: number;
+			totalPages: number;
+			page: number;
+			pagingCounter: number;
+			hasPrevPage: boolean;
+			hasNextPage: boolean;
+			prevPage: number;
+			nextPage: number;
+		};
+	};
+
+	type Example = {
+		id: string;
+		thisIsAField: LocalisedString;
+		// createdAt: string;
+		// updatedAt: string;
+	};
+
+	type LocalisedString = {
+		[key: string]: string;
+		lt: string;
+		en: string;
+	};
 </script>
 
 <svelte:head>
@@ -9,9 +41,13 @@
 </svelte:head>
 
 <section>
-	{#each data.docs as example}
-		<h1>{example.thisIsAField}</h1>
-		<div>{example.id}</div>
+	{#each examples as { thisIsAField, id }, i (id)}
+		{#if thisIsAField[$locale]}
+			<div transition:slide={{ duration: 150 }}>
+				<h1>{thisIsAField[$locale]}</h1>
+				<div>{id}</div>
+			</div>
+		{/if}
 	{/each}
 </section>
 

@@ -12,6 +12,7 @@
 
 <style>
 	.burger-container {
+		display: none;
 		flex-grow: 1;
 		flex-basis: 0;
 	}
@@ -57,5 +58,11 @@
 	}
 	.open div:nth-child(3) {
 		transform: rotate(-45deg) translate(3px, 3px);
+	}
+
+	@media (max-width: 1200px) {
+		.burger-container {
+			display: block;
+		}
 	}
 </style>

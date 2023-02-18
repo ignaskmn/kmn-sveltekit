@@ -2,10 +2,10 @@
 	import { t, locale } from '$lib/locales/translations';
 	export let height: number = 2.7;
 
-	// console.log(locale.get());
-
 	const switchLocale = (e: any) => {
 		locale.set(locale.get() === 'lt' ? 'en' : 'lt');
+		// dispatch('locale-change', locale.get());
+		// lang.set($lang === 'lt' ? 'en' : 'lt');
 	};
 </script>
 
@@ -33,9 +33,8 @@
 			}
 		</style>
 		<rect x="1.37732" y="1" width="39" height="39" rx="19.5" fill="white" stroke="#0F1538" />
-		<text x="50%" y="54%" text-anchor="middle" alignment-baseline="middle" class="lang">
-			{$t('common.lang')}
-			<!-- en -->
+		<text x="50%" y="55%" text-anchor="middle" alignment-baseline="middle" class="lang">
+			{$locale === 'lt' ? 'en' : 'lt'}
 		</text>
 	</svg>
 </button>

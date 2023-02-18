@@ -4,6 +4,9 @@
 	import Logo from '$lib/components/header/Logo.svelte';
 	import AccMenu from '$lib/components/header/AccMenu.svelte';
 	import Burger from '$lib/components/header/Burger.svelte';
+	import type { MenuItem } from '$lib/types';
+
+	export let menuItems: MenuItem[];
 
 	let innerWidth: number;
 	let isOpen: boolean;
@@ -18,26 +21,20 @@
 		<Burger bind:isOpen on:click={() => (isOpen = !isOpen)} />
 	{/if}
 	<Logo height={2.7} />
-	{#if desktop}
-		<DesktopMenu />
-	{/if}
+	<DesktopMenu {menuItems} />
 	<AccMenu height={2.5} />
 </header>
 {#if !desktop}
-	<MobileMenu bind:isOpen />
+	<MobileMenu bind:isOpen {menuItems} />
 {/if}
-<p>Content</p>
 
 <style>
 	header {
+		/* position: fixed; */
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
 		width: 100%;
 		height: 4rem;
-	}
-
-	p {
-		display: inline-block;
 	}
 </style>

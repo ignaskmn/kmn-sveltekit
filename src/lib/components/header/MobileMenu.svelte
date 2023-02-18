@@ -1,7 +1,9 @@
 <script lang="ts">
 	import { slide } from 'svelte/transition';
 	import Item from './Item.svelte';
-	import { menuItems } from '$lib/data/menuItems.js';
+	import type { MenuItem, LocalisedString } from '$lib/types';
+
+	export let menuItems: MenuItem[];
 
 	// height of every menu item
 	export let itemHeight: number = 2.7;
@@ -11,6 +13,11 @@
 	let submenu = '';
 	let menuHeight: number;
 	let submenuHeight: number;
+
+	const back: LocalisedString = {
+		lt: '<--Atgal',
+		en: '<--Back'
+	};
 
 	function toggleMenu() {
 		isOpen = !isOpen;
@@ -69,7 +76,7 @@
 									</li>
 								{/each}
 								<li>
-									<Item label="<- Atgal" h={itemHeight} onClick={closeMobileSubmenu} />
+									<Item label={back} h={itemHeight} onClick={closeMobileSubmenu} />
 								</li>
 							</ul>
 						{/if}

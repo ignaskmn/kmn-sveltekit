@@ -1,7 +1,9 @@
 <script lang="ts">
 	import { slide } from 'svelte/transition';
 	import Item from './Item.svelte';
-	import { menuItems } from '$lib/data/menuItems.js';
+	import type { MenuItem } from '$lib/types';
+
+	export let menuItems: MenuItem[];
 
 	let isSubmenuOpen = false;
 	let hover = false;
@@ -14,20 +16,19 @@
 		isSubmenuOpen = !isSubmenuOpen;
 		const parent = e.target.parentNode;
 		const id = parent.id;
-		const submenuItems = menuItems.find((item: any) => item.id === id)?.submenuItems.length;
 		submenu = submenu === id ? '' : id;
 	}
 
-	function handleMouseEnter(event: any) {
+	function handleMouseEnter(e: any) {
 		hover = true;
-		const target = event.target as HTMLElement;
+		const target = e.target as HTMLElement;
 		const id = target.id;
 		submenu = id;
 	}
 
-	function handleMouseLeave(event: any) {
+	function handleMouseLeave(e: any) {
 		hover = false;
-		const target = event.target as HTMLElement;
+		const target = e.target as HTMLElement;
 		const id = target.id;
 		setTimeout(() => {
 			if (submenu === id && hover === false) {
@@ -36,8 +37,8 @@
 		}, 200);
 	}
 
-	function outsideClose(event: any) {
-		const target = event.target as HTMLElement;
+	function outsideClose(e: any) {
+		const target = e.target as HTMLElement;
 		if (target.closest('.menu-item')) return;
 		submenu = '';
 		isSubmenuOpen = false;
@@ -65,9 +66,9 @@
 				>
 					<Item label={item.label} onClick={toggleSubmenu} />
 					{#if item.id === submenu}
-						<ul class="submenu" in:slide={{ duration: 100 }} out:slide={{ duration: 300 }}>
+						<ul class="submenu">
 							{#each item.submenuItems as subitem}
-								<li>
+								<li in:slide={{ duration: 150 }} out:slide={{ duration: 50 }}>
 									<Item label={subitem.label} slug={subitem.slug} h={itemHeight} />
 								</li>
 							{/each}
@@ -80,6 +81,10 @@
 </nav>
 
 <style>
+	.menu {
+		display: block;
+	}
+
 	.menu ul {
 		display: flex;
 		flex-direction: row;
@@ -101,5 +106,11 @@
 		margin: 0;
 		padding: 0;
 		background-color: var(--color-bg-0);
+	}
+
+	@media (max-width: 1200px) {
+		.menu {
+			display: none;
+		}
 	}
 </style>
