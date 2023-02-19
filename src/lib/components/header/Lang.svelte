@@ -14,7 +14,7 @@
 	style="height: {`${height}rem`}; line-height: {`${height}rem`}; width: {`${height}rem`}"
 > -->
 <!-- <div class="lang" on:click={changeLocale} on:keydown={changeLocale}>{$t('common.lang')}</div> -->
-<button on:click={switchLocale}>
+<button class="lang" on:click={switchLocale}>
 	<svg
 		width={`${height}rem`}
 		height={`${height}rem`}

@@ -1,5 +1,6 @@
 <script lang="ts">
 	import type { LocalisedString } from '$lib/types';
+	import { locale } from '$lib/locales/translations';
 
 	export let label: LocalisedString;
 	export let slug: string = '';
@@ -14,7 +15,7 @@
 	</a>
 {:else}
 	<button on:click={onClick} style={`height: ${h}rem; line-height: ${h}rem; font-size: ${size}rem`}>
-		{label}
+		{label[$locale]}
 	</button>
 {/if}
 

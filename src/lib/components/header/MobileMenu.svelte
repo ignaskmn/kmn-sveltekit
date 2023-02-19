@@ -15,8 +15,8 @@
 	let submenuHeight: number;
 
 	const back: LocalisedString = {
-		lt: '<--Atgal',
-		en: '<--Back'
+		lt: '<-Atgal',
+		en: '<-Back'
 	};
 
 	function toggleMenu() {
@@ -43,7 +43,8 @@
 
 	function outsideClose(event: any) {
 		const target = event.target as HTMLElement;
-		if (target.closest('.menu-item') || target.closest('.burger')) return;
+		if (target.closest('.menu-item') || target.closest('.burger') || target.closest('.lang'))
+			return;
 		isOpen = false;
 	}
 
