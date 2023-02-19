@@ -14,8 +14,6 @@
 
 	function toggleSubmenu(e: any) {
 		isSubmenuOpen = !isSubmenuOpen;
-		console.log(e.target.tagName);
-
 		const parent = e.target.parentNode;
 		const id = parent.id;
 		submenu = submenu === id ? '' : id;
