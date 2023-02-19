@@ -7,5 +7,5 @@ export const load: LayoutLoad = async ({ data, url }: LayoutLoadEvent) => {
 	const initLocale = locale.get() || defaultLocale;
 	await loadTranslations(initLocale, pathname);
 
-	return { data };
+	return { menu: data };
 };

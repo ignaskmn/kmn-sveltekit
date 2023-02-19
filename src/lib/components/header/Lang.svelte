@@ -33,7 +33,7 @@
 			}
 		</style>
 		<rect x="1.37732" y="1" width="39" height="39" rx="19.5" fill="white" stroke="#0F1538" />
-		<text x="50%" y="55%" text-anchor="middle" alignment-baseline="middle" class="lang">
+		<text x="51%" y="55%" text-anchor="middle" alignment-baseline="middle" class="lang">
 			{$locale === 'lt' ? 'en' : 'lt'}
 		</text>
 	</svg>

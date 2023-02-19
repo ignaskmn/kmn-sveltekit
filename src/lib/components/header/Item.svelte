@@ -3,15 +3,19 @@
 	import { locale } from '$lib/locales/translations';
 
 	export let label: LocalisedString;
-	export let slug: string = '';
+	export let slug: LocalisedString = { lt: '', en: '' };
 	export let h: number = 2.7;
 	export let size: number = 1.2;
 	export let onClick = (e: any) => {};
 </script>
 
-{#if slug !== ''}
-	<a href={`/${slug}`} style={`height: ${h}rem; line-height: ${h}rem; font-size: ${size}rem`}>
-		{label}
+{#if slug[$locale] !== ''}
+	<a
+		href={`/pages/${slug[$locale]}`}
+		style={`height: ${h}rem; line-height: ${h}rem; font-size: ${size}rem`}
+		on:click={onClick}
+	>
+		{label[$locale]}
 	</a>
 {:else}
 	<button on:click={onClick} style={`height: ${h}rem; line-height: ${h}rem; font-size: ${size}rem`}>
@@ -39,6 +43,7 @@
 		text-transform: uppercase;
 		font-size: 1.2rem;
 		font-weight: 500;
+		white-space: nowrap;
 	}
 
 	@media (max-width: 1200px) {

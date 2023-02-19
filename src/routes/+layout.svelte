@@ -4,7 +4,7 @@
 	import './styles.css';
 
 	export let data: Menu;
-	const menuItems: MenuItem[] = data.data.result.menuItems;
+	const menuItems: MenuItem[] = data.menu.result.menuItems;
 </script>
 
 <div class="app">

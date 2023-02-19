@@ -14,6 +14,8 @@
 
 	function toggleSubmenu(e: any) {
 		isSubmenuOpen = !isSubmenuOpen;
+		console.log(e.target.tagName);
+
 		const parent = e.target.parentNode;
 		const id = parent.id;
 		submenu = submenu === id ? '' : id;
@@ -53,7 +55,7 @@
 		{#each menuItems as item}
 			{#if !item.submenu}
 				<li class="menu-item" id={item.id}>
-					<Item label={item.label} slug={item.slug} />
+					<Item label={item.label} slug={item.slug} onClick={toggleSubmenu} />
 				</li>
 			{:else}
 				<li
@@ -69,7 +71,12 @@
 						<ul class="submenu">
 							{#each item.submenuItems as subitem}
 								<li in:slide={{ duration: 150 }} out:slide={{ duration: 50 }}>
-									<Item label={subitem.label} slug={subitem.slug} h={itemHeight} />
+									<Item
+										label={subitem.label}
+										slug={subitem.slug}
+										h={itemHeight}
+										onClick={toggleSubmenu}
+									/>
 								</li>
 							{/each}
 						</ul>

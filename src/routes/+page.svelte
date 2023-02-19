@@ -1,5 +1,4 @@
 <script lang="ts">
-	/** @type {import('./$types').PageData} */
 	import { locale } from '$lib/locales/translations';
 	import { slide } from 'svelte/transition';
 

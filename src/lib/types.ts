@@ -1,5 +1,5 @@
 export type Menu = {
-	data: {
+	menu: {
 		result: {
 			menuItems: MenuItem[];
 			globalType: string;
@@ -12,11 +12,11 @@ export type Menu = {
 
 export type MenuItem = {
 	label: LocalisedString;
-	slug: string;
+	slug: LocalisedString;
 	submenu: boolean;
 	submenuItems: {
 		label: LocalisedString;
-		slug: string;
+		slug: LocalisedString;
 		id: string;
 	}[];
 	id: string;

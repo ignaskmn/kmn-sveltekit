@@ -24,6 +24,11 @@
 	}
 
 	function toggleSubmenu(e: any) {
+		if (e.target.tagName === 'A') {
+			isOpen = false;
+			closeMobileSubmenu();
+			return;
+		}
 		isSubmenuOpen = !isSubmenuOpen;
 		const parent = e.target.parentNode;
 		const id = parent.id;
@@ -59,7 +64,7 @@
 			{#each menuItems as item}
 				{#if !item.submenu}
 					<li class="menu-item" id={item.id}>
-						<Item label={item.label} slug={item.slug} />
+						<Item label={item.label} slug={item.slug} onClick={toggleSubmenu} />
 					</li>
 				{:else}
 					<li
@@ -73,7 +78,12 @@
 							<ul class="submenu">
 								{#each item.submenuItems as subitem}
 									<li>
-										<Item label={subitem.label} slug={subitem.slug} h={itemHeight} />
+										<Item
+											label={subitem.label}
+											slug={subitem.slug}
+											h={itemHeight}
+											onClick={toggleSubmenu}
+										/>
 									</li>
 								{/each}
 								<li>
