@@ -5,7 +5,7 @@
 	export let label: LocalisedString;
 	export let slug: LocalisedString = { lt: '', en: '' };
 	export let h: number = 2.7;
-	export let size: number = 1.2;
+	export let size: number = 1;
 	export let onClick = (e: any) => {};
 </script>
 
@@ -25,22 +25,24 @@
 
 <style>
 	button {
-		padding: 0 0.75rem;
+		padding: 0 0.66rem;
 		background: none;
 		color: inherit;
 		border: none;
 		font: inherit;
 		cursor: pointer;
 		text-transform: uppercase;
+		font-family: var(--font-head);
 		font-size: 1.2rem;
 		font-weight: 500;
 		white-space: nowrap;
 	}
 
 	a {
-		padding: 0 0.75rem;
+		padding: 0 0.66rem;
 		display: inline-block;
 		text-transform: uppercase;
+		font-family: var(--font-head);
 		font-size: 1.2rem;
 		font-weight: 500;
 		white-space: nowrap;

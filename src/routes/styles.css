@@ -1,7 +1,11 @@
-@import '@fontsource/inter/variable-full.css';
+@import '@fontsource/texturina/400.css';
+@import '@fontsource/texturina/500.css';
+@import '@fontsource/unbounded';
+@import '@fontsource/inter';
 
 :root {
-	--font-body: "InterVariable", "Inter", sans-serif;
+	--font-body: "Inter", sans-serif;
+	--font-head: "Unbounded", sans-serif;
 	--color-bg-0: rgb(255, 255, 255);
 	--color-text: rgb(0, 0, 0);
 	--theme-primary: #0F1538;

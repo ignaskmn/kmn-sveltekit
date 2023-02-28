@@ -12,6 +12,8 @@
 	let isOpen: boolean;
 
 	$: desktop = innerWidth > 1200;
+
+	//write function to open burger
 </script>
 
 <svelte:window bind:innerWidth />
