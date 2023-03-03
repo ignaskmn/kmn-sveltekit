@@ -1,6 +1,5 @@
-@import '@fontsource/texturina/400.css';
-@import '@fontsource/texturina/500.css';
-@import '@fontsource/unbounded';
+@import '@fontsource/unbounded/400.css';
+@import '@fontsource/unbounded/600.css';
 @import '@fontsource/inter';
 
 :root {

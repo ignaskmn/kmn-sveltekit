@@ -5,8 +5,14 @@ const meta = {
 	title: 'Header/Item',
 	component: Item,
 	args: {
-		label: '',
-		slug: ''
+		label: {
+			en: '',
+			lt: ''
+		},
+		slug: {
+			en: '',
+			lt: ''
+		}
 	}
 } satisfies Meta<Item>;
 
@@ -16,13 +22,13 @@ type Story = StoryObj<typeof meta>;
 
 export const Link: Story = {
 	args: {
-		label: 'Link',
-		slug: 'link'
+		label: { en: 'Link', lt: 'Nuoroda' },
+		slug: { en: 'link', lt: 'Nuoroda' }
 	}
 };
 
 export const Button: Story = {
 	args: {
-		label: 'Button'
+		label: { en: 'Button', lt: 'Mygtukas' }
 	}
 };

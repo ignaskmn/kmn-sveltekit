@@ -4,17 +4,10 @@
 
 	const switchLocale = (e: any) => {
 		locale.set(locale.get() === 'lt' ? 'en' : 'lt');
-		// dispatch('locale-change', locale.get());
-		// lang.set($lang === 'lt' ? 'en' : 'lt');
 	};
 </script>
 
-<!-- <div
-	class="border"
-	style="height: {`${height}rem`}; line-height: {`${height}rem`}; width: {`${height}rem`}"
-> -->
-<!-- <div class="lang" on:click={changeLocale} on:keydown={changeLocale}>{$t('common.lang')}</div> -->
-<button class="lang" on:click={switchLocale}>
+<button on:click={switchLocale}>
 	<svg
 		width={`${height}rem`}
 		height={`${height}rem`}
@@ -39,12 +32,12 @@
 	</svg>
 </button>
 
-<!-- </div> -->
 <style>
 	button {
 		background: none;
 		border: none;
 		padding: 0;
+		line-height: 0.5rem;
 	}
 	.border {
 		cursor: pointer;
