@@ -4,40 +4,58 @@
 
 	export let years: number[] = [2020, 2021, 2022, 2023];
 	export let activeYear: number = 2022;
+	let innerWidth: number;
 
 	onMount(() => {
-		function handleResize() {
-			centerActiveYearBox();
-		}
-		window.addEventListener('resize', handleResize);
-		return () => {
-			window.removeEventListener('resize', handleResize);
-		};
+		handleResize();
 	});
 
 	afterUpdate(() => {
-		centerActiveYearBox();
+		handleResize();
 	});
 
+	function handleResize() {
+		const yearsElement = document.querySelector('.years') as HTMLElement;
+		const viewboxElement = document.querySelector('.viewbox') as HTMLElement;
+
+		if (yearsElement.scrollWidth > viewboxElement.clientWidth) {
+			viewboxElement.style.overflowX = 'scroll';
+			yearsElement.style.width = '100%';
+
+			centerActiveYearBox();
+		} else {
+			viewboxElement.style.overflowX = 'unset';
+			yearsElement.style.width = 'unset';
+		}
+	}
+
 	function centerActiveYearBox() {
-		const viewbox = document.querySelector('.viewbox') as HTMLElement;
-		const yearBoxes = document.querySelectorAll('.year-box');
-		const activeYearBox = document.querySelector('.year-box.active');
-		if (!yearBoxes || !activeYearBox) return;
-		const viewboxWidth = viewbox.clientWidth;
-		const activeYearBoxRect = activeYearBox.getBoundingClientRect();
-		const yearBoxesRect = yearBoxes[0].getBoundingClientRect();
-		console.log('activeYearBoxRect:', activeYearBoxRect, 'yearBoxesRect:', yearBoxesRect);
-		const offset =
-			activeYearBoxRect.left -
-			yearBoxesRect.left -
-			yearBoxesRect.width / 2 +
-			activeYearBoxRect.width -
-			viewboxWidth / 2;
-		const years = document.querySelector('.years') as HTMLElement;
-		years.style.transform = `translateX(${-offset}px)`;
+		const viewboxElement = document.querySelector('.viewbox') as HTMLElement;
+		const activeYearElement = document.querySelector('.year-box.active') as HTMLElement;
+
+		if (activeYear === years[0]) {
+			viewboxElement.scroll({
+				left: 0,
+				behavior: 'smooth'
+			});
+		} else if (activeYear === years[years.length - 1]) {
+			viewboxElement.scroll({
+				left: viewboxElement.scrollWidth - viewboxElement.clientWidth,
+				behavior: 'smooth'
+			});
+		} else {
+			viewboxElement.scroll({
+				left:
+					activeYearElement.offsetLeft -
+					viewboxElement.clientWidth / 2 +
+					activeYearElement.clientWidth / 2,
+				behavior: 'smooth'
+			});
+		}
 	}
 </script>
+
+<svelte:window on:resize={handleResize} bind:innerWidth />
 
 <div class="viewbox">
 	<div class="years">
@@ -56,13 +74,31 @@
 <style>
 	.viewbox {
 		width: 100%;
+		display: flex;
+		justify-content: center;
 		overflow: hidden;
+		-ms-overflow-style: none; /* Internet Explorer 10+ */
+		scrollbar-width: none; /* Firefox */
+	}
+
+	.viewbox::-webkit-scrollbar {
+		display: none; /* Safari and Chrome */
 	}
 
 	.years {
 		display: flex;
+		/* width: 100%; */
 		--gap: 3rem;
 		gap: var(--gap);
-		transition: transform 0.5s ease-in-out;
 	}
+
+	/* @media (hover: none) {
+		.viewbox {
+			overflow-x: scroll;
+		}
+
+		.years {
+			width: 100%;
+		}
+	} */
 </style>

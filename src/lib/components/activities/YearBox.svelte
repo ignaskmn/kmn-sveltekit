@@ -17,6 +17,7 @@
 		height: 4rem;
 		cursor: pointer;
 		position: relative;
+		margin: 0;
 	}
 
 	button.active {

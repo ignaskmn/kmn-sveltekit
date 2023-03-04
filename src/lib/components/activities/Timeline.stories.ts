@@ -5,7 +5,7 @@ const meta = {
 	title: 'Activities/Timeline',
 	component: Timeline,
 	args: {
-		years: [2020, 2021, 2022, 2023],
+		years: [2019, 2020, 2021, 2022, 2023],
 		activeYear: 2022
 	}
 } satisfies Meta<Timeline>;
