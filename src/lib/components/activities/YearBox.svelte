@@ -18,6 +18,7 @@
 		cursor: pointer;
 		position: relative;
 		margin: 0;
+		user-select: none;
 	}
 
 	button.active {
