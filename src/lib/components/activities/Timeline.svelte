@@ -1,72 +1,91 @@
 <script lang="ts">
 	import YearBox from './YearBox.svelte';
 	import { onMount, afterUpdate } from 'svelte';
+	import { handleResize } from './utilities';
 
 	export let years: number[] = [2020, 2021, 2022, 2023];
 	export let activeYear: number = 2022;
-	let innerWidth: number;
+	// let drag = false;
+	// let dragStart = 0;
 
 	onMount(() => {
-		handleResize();
+		handleResize(years, activeYear);
 	});
 
 	afterUpdate(() => {
-		handleResize();
+		handleResize(years, activeYear);
 	});
 
-	function handleResize() {
-		const yearsElement = document.querySelector('.years') as HTMLElement;
-		const viewboxElement = document.querySelector('.viewbox') as HTMLElement;
-
-		if (yearsElement.scrollWidth > viewboxElement.clientWidth) {
-			viewboxElement.style.overflowX = 'scroll';
-			yearsElement.style.width = '100%';
-
-			centerActiveYearBox();
-		} else {
-			viewboxElement.style.overflowX = 'unset';
-			yearsElement.style.width = 'unset';
-		}
+	function resize() {
+		handleResize(years, activeYear);
 	}
 
-	function centerActiveYearBox() {
-		const viewboxElement = document.querySelector('.viewbox') as HTMLElement;
-		const activeYearElement = document.querySelector('.year-box.active') as HTMLElement;
+	// Handle mouse drags
 
-		if (activeYear === years[0]) {
-			viewboxElement.scroll({
-				left: 0,
-				behavior: 'smooth'
-			});
-		} else if (activeYear === years[years.length - 1]) {
-			viewboxElement.scroll({
-				left: viewboxElement.scrollWidth - viewboxElement.clientWidth,
-				behavior: 'smooth'
-			});
-		} else {
-			viewboxElement.scroll({
-				left:
-					activeYearElement.offsetLeft -
-					viewboxElement.clientWidth / 2 +
-					activeYearElement.clientWidth / 2,
-				behavior: 'smooth'
-			});
-		}
-	}
+	// function downListener(e: MouseEvent) {
+	// 	drag = true;
+	// 	const yearsElement = document.querySelector('.years') as HTMLElement;
+	// 	// const yearElement = document.querySelector('.year-box') as HTMLElement;
+	// 	yearsElement.addEventListener('mousemove', moveListener);
+	// 	window.addEventListener('mouseup', upListener);
+	// 	// yearElement.style.pointerEvents = 'none';
+
+	// 	dragStart = e.clientX;
+	// 	console.log('dragStart', dragStart);
+	// }
+
+	// function moveListener(e: MouseEvent) {
+	// 	const yearElement = document.querySelector('.year-box') as HTMLElement;
+	// 	if (!drag) {
+	// 		yearElement.style.pointerEvents = 'unset';
+	// 		return;
+	// 	}
+	// 	const offset = 50;
+	// 	const ativeYearIndex = years.indexOf(activeYear);
+
+	// 	yearElement.style.pointerEvents = 'none';
+
+	// 	if (e.clientX - dragStart > offset) {
+	// 		if (ativeYearIndex > 0 && ativeYearIndex < years.length) {
+	// 			activeYear = years[ativeYearIndex - 1];
+	// 			drag = false;
+	// 		}
+	// 		console.log('right');
+	// 	} else if (e.clientX - dragStart < -offset) {
+	// 		if (ativeYearIndex >= 0 && ativeYearIndex < years.length - 1) {
+	// 			activeYear = years[ativeYearIndex + 1];
+	// 			drag = false;
+	// 		}
+	// 		console.log('left');
+	// 	}
+
+	// 	// drag = true;
+	// 	//
+	// }
+
+	// function upListener() {
+	// 	const yearsElement = document.querySelector('.years') as HTMLElement;
+	// 	drag = false;
+	// 	yearsElement.removeEventListener('mousemove', moveListener);
+	// 	window.removeEventListener('mouseup', upListener);
+	// }
 </script>
 
-<svelte:window on:resize={handleResize} bind:innerWidth />
+<svelte:window on:resize={resize} />
 
 <div class="viewbox">
+	<!-- <div class="years" on:mousedown={downListener} on:pointerdown={downListener}> -->
 	<div class="years">
 		{#each years as year}
-			<YearBox
-				{year}
-				isActive={year === activeYear}
-				onClick={() => {
-					activeYear = year;
-				}}
-			/>
+			<div class="year-box">
+				<YearBox
+					{year}
+					isActive={year === activeYear}
+					onClick={() => {
+						activeYear = year;
+					}}
+				/>
+			</div>
 		{/each}
 	</div>
 </div>
@@ -77,28 +96,25 @@
 		display: flex;
 		justify-content: center;
 		overflow: hidden;
-		-ms-overflow-style: none; /* Internet Explorer 10+ */
-		scrollbar-width: none; /* Firefox */
-	}
-
-	.viewbox::-webkit-scrollbar {
-		display: none; /* Safari and Chrome */
 	}
 
 	.years {
 		display: flex;
-		/* width: 100%; */
 		--gap: 3rem;
 		gap: var(--gap);
+		transition: transform 0.3s ease-in-out;
 	}
 
-	/* @media (hover: none) {
-		.viewbox {
-			overflow-x: scroll;
-		}
+	.year-box {
+		position: relative;
+	}
 
-		.years {
-			width: 100%;
-		}
-	} */
+	.year-box:not(:last-child)::after {
+		content: '';
+		position: absolute;
+		top: 50%;
+		width: var(--gap);
+		border: solid 0.1rem var(--color-text);
+		pointer-events: none;
+	}
 </style>

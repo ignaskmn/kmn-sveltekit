@@ -4,7 +4,7 @@
 	export let onClick: any = () => {};
 </script>
 
-<button class="year-box {isActive ? 'active' : ''}" on:click={onClick}> {year} </button>
+<button class="year {isActive ? 'active' : ''}" on:click={onClick}> {year} </button>
 
 <style>
 	button {
@@ -13,7 +13,7 @@
 		font-family: var(--font-head);
 		font-weight: 600;
 		font-size: 1.4rem;
-		min-width: 7.5rem;
+		width: 7.5rem;
 		height: 4rem;
 		cursor: pointer;
 		position: relative;
@@ -26,13 +26,17 @@
 		color: var(--color-bg-0);
 	}
 
-	button:not(:last-child)::after {
-		content: '';
-		position: absolute;
-		top: 50%;
-		left: 100%;
-		width: var(--gap);
-		border: solid 0.1rem var(--color-text);
-		pointer-events: none;
+	@media (max-width: 480px) {
+		button {
+			width: 6rem;
+			height: 3rem;
+			font-size: 1rem;
+		}
+	}
+
+	@media (max-width: 380px) {
+		button {
+			width: 5rem;
+		}
 	}
 </style>
