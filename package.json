@@ -46,8 +46,6 @@
   "type": "module",
   "dependencies": {
     "@fontsource/inter": "^4.5.15",
-    "@fontsource/rajdhani": "^4.5.10",
-    "@fontsource/texturina": "^4.5.12",
     "@fontsource/unbounded": "^4.5.1",
     "@storybook/addon-a11y": "^6.5.16",
     "sveltekit-i18n": "^2.2.2",
