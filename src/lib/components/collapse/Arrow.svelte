@@ -17,7 +17,7 @@
 		<svg width={a} height={a}>
 			<polygon
 				class="tip {isOpen ? '' : 'hide'}"
-				style="transform-origin: {side - (0.5 + width/2)}rem 0"
+				style="transform-origin: {side / 2}rem 0"
 				points="{a / 2} {a / 6.667}, {a} {a}, 0 {a}"
 				fill="black"
 			/>
@@ -33,7 +33,7 @@
 		<svg width={a} height={a}>
 			<polygon
 				class="tip {isOpen ? 'hide' : ''}"
-				style="transform-origin: {side - (0.5 + width/2)}rem 0"
+				style="transform-origin: {side / 2}rem 0"
 				points="0 {a / 6.667}, {a} {a / 6.667}, {a / 2} {a}"
 				fill="black"
 			/>

@@ -6,13 +6,26 @@ const meta = {
 	title: 'Collapse/Simple',
 	component: Collapse,
 	decorators: [() => ({ Component: WideMobile })],
-	args: {}
+	args: {
+	}
 } satisfies Meta<Collapse>;
 
 export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {
-	args: {}
+export const Event: Story = {
+	args: {
+		type: 'event',
+		heading: "Veiklos / Koncerto pavadinimas"
+	}
+};
+
+export const Person: Story = {
+	args: {
+		type: 'person',
+		firstName: 'Vardenė',
+		lastName: 'Pavardenis',
+		nationality: "US",
+	}
 };
