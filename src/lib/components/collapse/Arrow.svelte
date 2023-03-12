@@ -1,13 +1,14 @@
 <script lang="ts">
 	export let height: number = 4;
-	export let direction: 'upward' | 'downward' = 'downward';
+	export let isOpen: boolean = false;
 
 	function remToPx(rem: number) {
 		return rem * parseFloat(getComputedStyle(document.documentElement).fontSize);
 	}
 
+	let width = 0.25;
 	//triangle side in rem
-	let side = 1.5;
+	let side = 1.25;
 	let a = remToPx(side);
 </script>
 
@@ -15,7 +16,8 @@
 	<div class="upper-tip-container">
 		<svg width={a} height={a}>
 			<polygon
-				class="tip {direction === 'upward' ? '' : 'hide'}"
+				class="tip {isOpen ? '' : 'hide'}"
+				style="transform-origin: {side - (0.5 + width/2)}rem 0"
 				points="{a / 2} {a / 6.667}, {a} {a}, 0 {a}"
 				fill="black"
 			/>
@@ -23,14 +25,15 @@
 	</div>
 
 	<div class="arrow-container">
-		<svg width="1.25rem" height="{height}rem">
-			<rect x="50%" class="arrow" width="0.25rem" height="{height}rem" />
+		<svg width="{side-width}rem" height="{height}rem">
+			<rect x="50%" class="arrow" width="{width}rem" height="{height}rem" />
 		</svg>
 	</div>
 	<div class="bottom-tip-container">
 		<svg width={a} height={a}>
 			<polygon
-				class="tip {direction === 'downward' ? '' : 'hide'}"
+				class="tip {isOpen ? 'hide' : ''}"
+				style="transform-origin: {side - (0.5 + width/2)}rem 0"
 				points="0 {a / 6.667}, {a} {a / 6.667}, {a / 2} {a}"
 				fill="black"
 			/>
@@ -60,7 +63,7 @@
 	}
 
 	.tip {
-		transform-origin: 0.75rem 0;
+		/* transform-origin: 0.75rem 0; */
 		transform: scale(1, 1);
 		transition: transform 0.3s ease-in-out;
 	}

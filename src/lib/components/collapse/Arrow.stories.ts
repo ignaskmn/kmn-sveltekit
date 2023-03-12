@@ -5,12 +5,12 @@ const meta = {
 	title: 'Collapse/Arrow',
 	component: Arrow,
 	args: {
-		direction: 'downward',
+		isOpen: false,
 		height: 6
 	},
 	argTypes: {
-		direction: {
-			options: ['upward', 'downward'],
+		isOpen: {
+			options: [true, false],
 			control: { type: 'radio' }
 		}
 	}
