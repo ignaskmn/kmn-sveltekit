@@ -10,6 +10,6 @@
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
-		width: 480px;
+		width: 580px;
 	}
 </style>

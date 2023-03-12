@@ -1,12 +1,12 @@
 <script lang="ts">
 	import Arrow from './Arrow.svelte';
 
-	export let heading: string = 'Heading';
+	export let heading: string = 'Veiklos / Koncerto pavadinimas';
 </script>
 
 <div class="heading-container">
-	<h1>{heading}</h1>
-	<Arrow height={4} />
+	<h2>{heading}</h2>
+	<Arrow height={6} />
 </div>
 
 <style>
@@ -14,15 +14,14 @@
 		display: flex;
 		flex-direction: row;
 		justify-content: space-between;
-		align-items: center;
-		width: 480px;
+		align-items: flex-start;
 	}
 
-	h1 {
+	h2 {
 		margin: 0;
 	}
 
-	.arrow {
+	/* .arrow {
 		font-size: 1.5rem;
-	}
+	} */
 </style>

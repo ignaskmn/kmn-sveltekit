@@ -1,5 +1,5 @@
 <script lang="ts">
-	export let height: number = 13;
+	export let height: number = 4;
 	export let direction: 'upward' | 'downward' = 'downward';
 
 	function remToPx(rem: number) {
