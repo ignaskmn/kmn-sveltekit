@@ -5,8 +5,8 @@
 
 	export let years: number[] = [2020, 2021, 2022, 2023];
 	export let activeYear: number = 2022;
-	let drag = false;
-	let dragStart = 0;
+	// let drag = false;
+	// let dragStart = 0;
 
 	onMount(() => {
 		handleResize(years, activeYear);
@@ -22,60 +22,60 @@
 
 	// Handle mouse drags
 
-	function downListener(e: MouseEvent) {
-		drag = true;
-		const yearsElement = document.querySelector('.years') as HTMLElement;
-		// const yearElement = document.querySelector('.year-box') as HTMLElement;
-		yearsElement.addEventListener('mousemove', moveListener);
-		window.addEventListener('mouseup', upListener);
-		// yearElement.style.pointerEvents = 'none';
+	// function downListener(e: MouseEvent) {
+	// 	drag = true;
+	// 	const yearsElement = document.querySelector('.years') as HTMLElement;
+	// 	// const yearElement = document.querySelector('.year-box') as HTMLElement;
+	// 	yearsElement.addEventListener('mousemove', moveListener);
+	// 	window.addEventListener('mouseup', upListener);
+	// 	// yearElement.style.pointerEvents = 'none';
 
-		dragStart = e.clientX;
-		console.log('dragStart', dragStart);
-	}
+	// 	dragStart = e.clientX;
+	// 	console.log('dragStart', dragStart);
+	// }
 
-	function moveListener(e: MouseEvent) {
-		const yearElement = document.querySelector('.year-box') as HTMLElement;
-		if (!drag) {
-			yearElement.style.pointerEvents = 'unset';
-			return;
-		}
-		const offset = 50;
-		const ativeYearIndex = years.indexOf(activeYear);
+	// function moveListener(e: MouseEvent) {
+	// 	const yearElement = document.querySelector('.year-box') as HTMLElement;
+	// 	if (!drag) {
+	// 		yearElement.style.pointerEvents = 'unset';
+	// 		return;
+	// 	}
+	// 	const offset = 50;
+	// 	const ativeYearIndex = years.indexOf(activeYear);
 
-		yearElement.style.pointerEvents = 'none';
+	// 	yearElement.style.pointerEvents = 'none';
 
-		if (e.clientX - dragStart > offset) {
-			if (ativeYearIndex > 0 && ativeYearIndex < years.length) {
-				activeYear = years[ativeYearIndex - 1];
-				drag = false;
-			}
-			console.log('right');
-		} else if (e.clientX - dragStart < -offset) {
-			if (ativeYearIndex >= 0 && ativeYearIndex < years.length - 1) {
-				activeYear = years[ativeYearIndex + 1];
-				drag = false;
-			}
-			console.log('left');
-		}
+	// 	if (e.clientX - dragStart > offset) {
+	// 		if (ativeYearIndex > 0 && ativeYearIndex < years.length) {
+	// 			activeYear = years[ativeYearIndex - 1];
+	// 			drag = false;
+	// 		}
+	// 		console.log('right');
+	// 	} else if (e.clientX - dragStart < -offset) {
+	// 		if (ativeYearIndex >= 0 && ativeYearIndex < years.length - 1) {
+	// 			activeYear = years[ativeYearIndex + 1];
+	// 			drag = false;
+	// 		}
+	// 		console.log('left');
+	// 	}
 
-		// drag = true;
-		//
-	}
+	// 	// drag = true;
+	// 	//
+	// }
 
-	function upListener() {
-		const yearsElement = document.querySelector('.years') as HTMLElement;
-		drag = false;
-		yearsElement.removeEventListener('mousemove', moveListener);
-		window.removeEventListener('mouseup', upListener);
-	}
+	// function upListener() {
+	// 	const yearsElement = document.querySelector('.years') as HTMLElement;
+	// 	drag = false;
+	// 	yearsElement.removeEventListener('mousemove', moveListener);
+	// 	window.removeEventListener('mouseup', upListener);
+	// }
 </script>
 
 <svelte:window on:resize={resize} />
 
 <div class="viewbox">
-	<div class="years" on:mousedown={downListener} on:pointerdown={downListener}>
-		<!-- <div class="years"> -->
+	<!-- <div class="years" on:mousedown={downListener} on:pointerdown={downListener}> -->
+	<div class="years">
 		{#each years as year}
 			<div class="year-box">
 				<YearBox
