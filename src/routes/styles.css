@@ -1,9 +1,9 @@
 @import '@fontsource/unbounded/400.css';
 @import '@fontsource/unbounded/600.css';
-@import '@fontsource/inter';
+@import '@fontsource/anek-latin/variable.css';
 
 :root {
-	--font-body: "Inter", sans-serif;
+	--font-body: "Anek Latin", sans-serif;
 	--font-head: "Unbounded", sans-serif;
 	--color-bg-0: rgb(255, 255, 255);
 	--color-text: rgb(0, 0, 0);
